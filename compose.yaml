@@ -1,6 +1,7 @@
 services:
   jellyfin:
     image: jellyfin/jellyfin
+    hostname: jellyfin
     container_name: jellyfin
     # Optional - specify the uid and gid you would like Jellyfin to use instead of root
     user: uid:gid
@@ -14,4 +15,14 @@ services:
         source: jellyfin/media
         target: /media
     restart: 'unless-stopped'
+  caddy:
+    image: caddy:2.11.2-alpine
+    hostname: caddy
+    restart: unless-stopped
+    ports:
+      - "443:443"
+      - "443:443/udp"
+      - "80:80"
+    volumes:
+      - caddy:/etc/caddy
 
