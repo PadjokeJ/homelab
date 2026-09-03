@@ -28,6 +28,9 @@ services:
     image: ghcr.io/seerr-team/seerr:v3.4.0
     init: true
     container_name: seerr
+    networks:
+      seerr_vpn:
+        ipv4_address: 172.30.0.10
     environment:
       - LOG_LEVEL=debug
       - TZ=Europe/Zurich
@@ -51,5 +54,5 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 10.2.0.0/24
+        - subnet: 173.30.0.0/24
 
