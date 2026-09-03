@@ -25,7 +25,7 @@ services:
       - ./caddy:/etc/caddy
       - caddy_data:/data
   seerr:
-    image: ghcr.io/seerr-team/seerr:latest
+    image: ghcr.io/seerr-team/seerr:v3.4.0
     init: true
     container_name: seerr
     environment:
