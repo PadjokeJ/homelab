@@ -26,4 +26,10 @@ services:
       - caddy_data:/data
 volumes:
   caddy_data:
+networks:
+  - proton:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.2.0.0/24
 
