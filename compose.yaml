@@ -29,7 +29,7 @@ services:
     init: true
     container_name: seerr
     networks:
-      seerr_vpn:
+      proton:
         ipv4_address: 172.30.0.10
     environment:
       - LOG_LEVEL=debug
