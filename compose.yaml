@@ -11,8 +11,7 @@ services:
       - jellyfin/config:/config
       - jellyfin/cache:/cache
       - type: bind
-        source: /media
+        source: jellyfin/media
         target: /media
     restart: 'unless-stopped'
-volumes:
 
