@@ -28,7 +28,6 @@ services:
     image: ghcr.io/seerr-team/seerr:v3.4.0
     init: true
     container_name: seerr
-    network_mode: "service:gluetun"
     environment:
       - LOG_LEVEL=debug
       - TZ=Europe/Zurich
