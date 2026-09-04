@@ -9,8 +9,11 @@ services:
     volumes:
       - ~/jellyfin/config:/config
       - ~/jellyfin/cache:/cache
+      #- type: bind
+      #  source: ~/jellyfin/media
+      #  target: /media
       - type: bind
-        source: ~/jellyfin/media
+        source: /mnt/docker/vpn_media/
         target: /media
     restart: 'unless-stopped'
   caddy:
