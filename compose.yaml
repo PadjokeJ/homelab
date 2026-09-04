@@ -57,6 +57,7 @@ services:
       - 8112:8112
       - 7878:7878
       - 8989:8989
+      - 9696:9696
     volumes:
       - /mnt/docker/vpn_media/gluetun:/gluetun
     environment:
@@ -108,6 +109,17 @@ services:
     volumes:
       - ./deluge:/config
       - /mnt/docker/vpn_media/torrents:/data/torrents
+    network_mode: "service:gluetun"
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /path/to/prowlarr/data:/config
+    restart: unless-stopped
     network_mode: "service:gluetun"
 
 volumes:
