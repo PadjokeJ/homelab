@@ -95,6 +95,20 @@ services:
         source: ~/jellyfin/media
         target: /media
     restart: unless-stopped
+  deluge:
+    container_name: deluge
+    image: lscr.io/linuxserver/deluge:latest
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Zurich
+    volumes:
+      - ./deluge:/config
+      - type: bind
+        source: ~/jellyfin/media
+        target: /MediaCenterBox
+    network_mode: "service:gluetun"
 
 volumes:
   caddy_data:
