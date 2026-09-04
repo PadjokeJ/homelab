@@ -76,7 +76,8 @@ services:
       - PGID=1000
       - TZ=Europe/Zurich
     volumes:
-      - /mnt/docker/vpn_media/radarr/data:/config
+      - /mnt/docker/appdata/radarr/:/config
+      - /mnt/docker/vpn_media/:/data
       - type: bind
         source: ~/jellyfin/media
         target: /media
@@ -90,7 +91,8 @@ services:
       - PGID=1000
       - TZ=Europe/Zurich
     volumes:
-      - /mnt/docker/vpn_media/sonarr/data:/config
+      - /mnt/docker/appdata/sonarr/:/config
+      - /mnt/docker/vpn_media/:/data
       - type: bind
         source: ~/jellyfin/media
         target: /media
@@ -105,9 +107,7 @@ services:
       - TZ=Europe/Zurich
     volumes:
       - ./deluge:/config
-      - type: bind
-        source: ~/jellyfin/media
-        target: /MediaCenterBox
+      - /mnt/docker/vpn_media/torrents:/data/torrents
     network_mode: "service:gluetun"
 
 volumes:
