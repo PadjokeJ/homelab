@@ -118,7 +118,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /path/to/prowlarr/data:/config
+      - ~/prowlarr:/config
     restart: unless-stopped
     network_mode: "service:gluetun"
 
