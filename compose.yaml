@@ -70,6 +70,7 @@ services:
       - WIREGUARD_ADDRESSES=${WG_ADDR}
       - SERVER_COUNTRIES=France,Switzerland
       - TZ=Europe/Zurich
+      - VPN_PORT_FORWARDING=on
     restart: unless-stopped
   radarr:
     image: ghcr.io/linuxserver/radarr:latest
