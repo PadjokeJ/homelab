@@ -1,6 +1,15 @@
 http://home.jpfister.ch {
     redir /jellyfin /jellyfin/ permanent
     handle_path /jellyfin* {
-        reverse_proxy http://jellyfin:8096
+      reverse_proxy http://jellyfin:8096
+    }
+    handle_path /seerr* {
+      reverse_proxy http://localhost:5055
+    }
+    handle_path /radarr* {
+      reverse_proxy http://localhost:7878
+    }
+    handle_path /sonarr* {
+      reverse_proxy http://localhost:8989
     }
 }
