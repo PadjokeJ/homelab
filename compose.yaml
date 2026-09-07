@@ -56,11 +56,12 @@ services:
     ports:
       - 6881:6881
       - 6881:6881/udp
-      - 58846:58846
+      - 8080:8080
       - 8112:8112
       - 7878:7878
       - 8989:8989
       - 9696:9696
+      - 8191:8191
     volumes:
       - /mnt/docker/vpn_media/gluetun:/gluetun
     environment:
@@ -102,29 +103,46 @@ services:
         source: ~/jellyfin/media
         target: /media
     restart: unless-stopped
-  deluge:
-    container_name: deluge
-    image: lscr.io/linuxserver/deluge:latest
-    restart: unless-stopped
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent
+    container_name: qbittorrent
+    network_mode: "service:gluetun"
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Zurich
+      - WEBUI_PORT=8080
+      - UMASK=022
+    healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+      test: "curl -sf https://1.1.1.1/  || exit 1"
+      interval: 1m
+      timeout: 10s
+      retries: 1
     volumes:
-      - ./deluge:/config
+      - ../qbittorrent:/config
       - /mnt/docker/vpn_media/torrents:/data/torrents
-    network_mode: "service:gluetun"
+    restart: always
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Etc/UTC
+      - TZ=Europe/Zurich
     volumes:
       - ~/prowlarr:/config
     restart: unless-stopped
     network_mode: "service:gluetun"
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    network_mode: "service:gluetun"
+    environment:
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=none
+      - TZ=Europe/Zurich
+    restart: unless-stopped
 
 volumes:
   caddy_data:
