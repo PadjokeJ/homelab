@@ -6,10 +6,10 @@ http://home.jpfister.ch {
   handle_path /seerr* {
     reverse_proxy http://seerr:5055
   }
-  handle_path /radarr* {
+  handle /radarr* {
     reverse_proxy http://gluetun:7878
   }
-  handle_path /sonarr* {
+  handle /sonarr* {
     reverse_proxy http://gluetun:8989
   }
   handle_path /qbit* {
