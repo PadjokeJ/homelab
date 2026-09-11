@@ -143,6 +143,17 @@ services:
       - CAPTCHA_SOLVER=none
       - TZ=Europe/Zurich
     restart: unless-stopped
+  timetagger:
+    image: ghcr.io/almarklein/timetagger:latest-nonroot
+    ports:
+      - "8001:80"
+    volumes:
+      - ../timetagger:/opt/_timetagger
+    environment:
+      - TIMETAGGER_BIND=0.0.0.0:80
+      - TIMETAGGER_DATADIR=/opt/_timetagger
+      - TIMETAGGER_LOG_LEVEL=info
+      - TIMETAGGER_CREDENTIALS=${TT_PW}
 
 volumes:
   caddy_data:
