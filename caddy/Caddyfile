@@ -16,6 +16,6 @@ http://home.jpfister.ch {
     reverse_proxy http://gluetun:8080
   }
   handle /timetagger* {
-    reverse_proxy http://timetagger:8001
+    reverse_proxy http://timetagger:80
   }
 }
