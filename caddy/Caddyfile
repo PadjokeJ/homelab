@@ -15,4 +15,7 @@ http://home.jpfister.ch {
   handle_path /qbit* {
     reverse_proxy http://gluetun:8080
   }
+  handle /timetagger* {
+    reverse_proxy http://timetagger:8001
+  }
 }

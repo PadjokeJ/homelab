@@ -145,6 +145,7 @@ services:
     restart: unless-stopped
   timetagger:
     image: ghcr.io/almarklein/timetagger:latest-nonroot
+    container_name: timetagger
     ports:
       - "8001:80"
     volumes:
