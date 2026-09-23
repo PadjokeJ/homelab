@@ -20,4 +20,7 @@ home.jpfister.ch {
   handle /timetagger* {
     reverse_proxy http://timetagger:80
   }
+  handle_path /pihole* {
+    reverse_proxy http://pihole:80
+  }
 }

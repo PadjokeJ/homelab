@@ -161,6 +161,7 @@ services:
     ports:
       - "53:53/tcp"
       - "53:53/udp"
+      - "8002:80"
     environment:
       TZ: "Europe/Zurich"
       FTLCONF_webserver_api_password: ${PIHOLE_PW}
