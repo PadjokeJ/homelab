@@ -1,12 +1,13 @@
-home.jpfister.ch {
-  tls internal
-
+http://* {
   redir /jellyfin /jellyfin/ permanent
+  redir /qbit /qbit/ permanent
+  redir /timetagger /timetagger/ permanent
+
   handle_path /jellyfin* {
     reverse_proxy http://jellyfin:8096
   }
   handle_path /seerr* {
-    reverse_proxy http://seerr:5055
+    redir {host}:5055{uri}
   }
   handle /radarr* {
     reverse_proxy http://gluetun:7878
@@ -21,6 +22,12 @@ home.jpfister.ch {
     reverse_proxy http://timetagger:80
   }
   handle_path /pihole* {
-    reverse_proxy http://pihole:80
+    redir {host}:8002{uri}
+  }
+
+  handle / {
+    rewrite index.html
+    root /etc/caddy
+    file_server
   }
 }
