@@ -2,7 +2,7 @@
   auto_https off
 }
 
-home.jpfister.ch, 10.0.0.1, 192.168.1.228 {
+http://home.jpfister.ch, http://10.0.0.1, http://192.168.1.228 {
   redir /jellyfin /jellyfin/ permanent
   redir /qbit /qbit/ permanent
   redir /timetagger /timetagger/ permanent
@@ -11,7 +11,7 @@ home.jpfister.ch, 10.0.0.1, 192.168.1.228 {
     reverse_proxy http://jellyfin:8096
   }
   handle_path /seerr* {
-    redir {host}:5055{uri}
+    redir http://{host}:5055{uri}
   }
   handle /radarr* {
     reverse_proxy http://gluetun:7878
@@ -26,7 +26,7 @@ home.jpfister.ch, 10.0.0.1, 192.168.1.228 {
     reverse_proxy http://timetagger:80
   }
   handle_path /pihole* {
-    redir {host}:8002{uri}
+    redir http://{host}:8002{uri}
   }
 
   handle / {
