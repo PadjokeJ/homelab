@@ -1,4 +1,8 @@
-http://* {
+{
+  auto_https off
+}
+
+* {
   redir /jellyfin /jellyfin/ permanent
   redir /qbit /qbit/ permanent
   redir /timetagger /timetagger/ permanent
